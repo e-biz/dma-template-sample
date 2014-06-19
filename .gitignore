@@ -1,0 +1,35 @@
+#############
+###Cordova###
+#############
+
+cordova-sources/hooks/
+cordova-sources/merges/
+cordova-sources/platforms/
+
+
+############################
+###native-android-sources###
+############################
+# Local configuration file (sdk path, etc) #
+############################################
+native-android-sources/local.properties
+native-android-sources/project.properties
+native-android-sources/.gitignore
+native-android-sources/app/.gitignore
+
+
+# Generated files #
+###################
+native-android-sources/bin/
+native-android-sources/gen/
+native-android-sources/build/
+
+# Intellij project files #
+##########################
+**.idea/
+**.iml
+**.eml
+**.ipr
+**.iws
+**.userlibraries
+**.gradle/

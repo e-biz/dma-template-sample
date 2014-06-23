@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+/*
  Copyright 2014 eBusiness Information
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +12,17 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
--->
-<resources>
+ */
+package mobi.designmyapp.template.sample.ods.listener;
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
-    </style>
-
-</resources>
+/**
+ * OnTaskCompletedListener
+ * T result type provided as a parameter in onTaskCompleted
+ */
+public interface OnTaskCompletedListener<T> {
+  /**
+   * Method called when the task execution is over
+   * @param result
+   */
+  public void onTaskCompleted(T result);
+}

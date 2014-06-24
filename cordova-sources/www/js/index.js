@@ -1,63 +1,110 @@
-var url = "http://public.opendatasoft.com/api/records/1.0/search?dataset=positions_geographiques_des_stations_du_reseau_ratp&rows=500&facet=reseau&exclude.reseau=bus&exclude.reseau=rer";
-var posts_url = url;
+/*
+ Copyright 2014 eBusiness Information
 
-$(document).ready(function() {
-	// jQuery is properly loaded at this point
-	// so proceed to bind the Cordova's deviceready event
-	$(document).bind('deviceready', app.onDeviceReady);
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
 
-});
+ http://www.apache.org/licenses/LICENSE-2.0
 
-readPosts= function() {
-    console.log('Reading posts');
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: posts_url,
-        success: onSuccess,
-        error: onError
-    });
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 
-    console.log('Reading posts asynchrounously');
+
+// ---------------------------------------------------------------------------
+// ODS Normalized fields
+// ---------------------------------------------------------------------------
+const TAG_ENTRY = "records";
+const TAG_ID = "recordid";
+const TAG_DATA = "fields";
+
+// ---------------------------------------------------------------------------
+// Custom Sample related fields
+// ---------------------------------------------------------------------------
+const TAG_NAME = "nom_station";
+const TAG_AREA = "arrondissement";
+const TAG_LAT = "latitude";
+const TAG_LONG = "longitude";
+
+
+// Wait for device API libraries to load
+//
+function onLoad() {
+  const myUrl =
+      query.dataset(SAMPLE_DATASET)
+          .exclude(SAMPLE_FACET, "bus")
+          .exclude(SAMPLE_FACET, "rer")
+          .facet(SAMPLE_FACET)
+          .limit(SAMPLE_LIMIT)
+          .getUrl();
+
+  document.addEventListener("deviceready", onDeviceReady(myUrl), false);
+}
+
+// device APIs are available
+//
+function onDeviceReady(url) {
+  // Now safe to use device APIs
+  retrieve(url);
 };
 
-onSuccess= function(data) {
-    var items= [];
-    $.each(data.records, function(key, val){
-        items.push('<li data-filtertext="'+ val.fields.nom_station +'>');
-        items.push('<div class="station-name">')
-        items.push(val.fields.nom_station)
-        items.push('</div>');
-        items.push('<div class="station-details">')
-        items.push(val.fields.arrondissement)
-        items.push('</div>');
-        items.push('<div class="station-details">')
-        items.push(val.fields.reseau)
-        items.push('</div>');
-        items.push('</li>');
-
-
-    });
-    $('#posts').html(items.join("")); //prevent commas between two elements
-    $('#posts').listview('refresh');
-    console.log('Exiting onSuccess');
-};
-
-onError= function(data, textStatus, errorThrown) {
-    console.log('Data: ' + data);
-    console.log('Status: ' + textStatus);
-    console.log('Error: ' + errorThrown);
-    $("#posts").html('Error while loading posts');
-    console.log('Exiting onError');
+/**
+ * Retrieves the ODS call result
+ * @param url
+ */
+retrieve = function (url) {
+  console.log('Reading posts');
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: url,
+    success: onSuccess,
+    error: onError
+  });
+  console.log('Reading posts asynchrounously');
 };
 
 
-var app = {
+/**
+ * Processes JSON parsing on the ODS call result
+ * @param data
+ */
+onSuccess = function (data) {
+  var items = [];
+  var entry;
+  $.each(data[TAG_ENTRY], function (key, val) {
 
+    entry =
+        ODSResult.setId(val[TAG_ID])
+            .setTitle(val[TAG_DATA][TAG_NAME])
+            .setDescription(val[TAG_DATA][TAG_AREA])
+            .setLatitude(val[TAG_DATA][TAG_LAT])
+            .setLongitude(val[TAG_DATA][TAG_LONG]);
 
-	onDeviceReady: function() {
-		console.log('Device is ready');
-		readPosts();
-	}
+    items.push(entry.getDisplay());
 
+  });
+  $('#list').html(items.join("")); //prevent commas between two elements
+  $('#list').listview('refresh');
+  console.log('Exiting onSuccess');
+};
+
+/**
+ * if error during retrieve
+ * @param data
+ * @param textStatus
+ * @param errorThrown
+ */
+onError = function (data, textStatus, errorThrown) {
+  console.log('Data: ' + data);
+  console.log('Status: ' + textStatus);
+  console.log('Error: ' + errorThrown);
+
+  $("#list").html('Error while loading posts. No connection ?');
+
+  console.log('Exiting onError');
 };

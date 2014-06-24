@@ -113,12 +113,3 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
-
-.station-name{
-    font-size:16px;
-    font-weight: bold;
-}
-
-.station-details{
-    font-size:12px;
-}

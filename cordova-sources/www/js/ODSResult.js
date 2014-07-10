@@ -51,7 +51,7 @@ var ODSResult = {
    */
   getDisplay: function(){
     var tag = [];
-    tag.push('<li data-filtertext="' + this.name + '">');
+    tag.push('<li data-filtertext="' + this.title + '">');
     tag.push('<div class="title">');
     tag.push(this.title);
     tag.push('</div>');

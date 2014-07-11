@@ -24,18 +24,30 @@
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,width=device-width,height=device-height, target-densitydpi=device-dpi"/>
   <link rel="stylesheet" type="text/css" href="css/index.css"/>
   <link rel="stylesheet" type="text/css" href="css/list.css"/>
+  <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css">
 
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
-  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+  <script src="js/jquery/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
   <script src="cordova.js"></script>
   <script src="js/ODSQueryBuilder.js"></script>
   <script src="js/ODSResult.js"></script>
+  <script src="js/ODS.js"></script>
   <script src="js/index.js"></script>
 </head>
 <body onload="onLoad()">
 
-<div data-role="page" id="pageone">
+<div data-role="page" id="index">
+  <div data-role="content" class="ui-content" id="index-content">
+    <div id="buttons">
+      <a href="#ODS" data-role="button" id="ODSSample">ODS Sample</a>
+      <a href="#index" data-role="button">Sample 2</a>
+      <a href="#index" data-role="button">Sample 3</a>
+    </div>
+  </div>
+</div>
+
+
+<div data-role="page" id="ODS">
   <div data-role="main" class="ui-content">
 
     <!-- Filter for following listview -->

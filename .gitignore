@@ -33,3 +33,5 @@ native-android-sources/build/
 **.iws
 **.userlibraries
 **.gradle/
+
+**~

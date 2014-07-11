@@ -14,18 +14,13 @@
  limitations under the License.
  */
 
-const URL_BASE = "http://public.opendatasoft.com/api/records/1.0/search"
-
-// ---------------------------------------------------------------------------
-// Sample params
-// ---------------------------------------------------------------------------
-const SAMPLE_LIMIT = 500;
-const SAMPLE_DATASET = "positions_geographiques_des_stations_du_reseau_ratp";
-const SAMPLE_FACET = "reseau";
-
 
 var query = {
-  url: URL_BASE.concat('?'),
+  url: "",
+  baseurl: function (url) {
+    this.url = this.url.concat(url, "?");
+    return this;
+  },
   dataset: function (dataset) {
     this.url = this.url.concat("&dataset=", dataset);
     return this;

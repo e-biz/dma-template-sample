@@ -18,12 +18,15 @@ limitations under the License.
 
   <string name="app_name">SampleAndroid</string>
   <string name="sample_ods">ODS Enabler</string>
-  <string name="sample_2">Sample 2</string>
-  <string name="sample_3">Sample 3</string>
-
+  <string name="sample_dfki_poi_client">DFKI POI Client Enabler</string>
+  <string name="sample_upv_prod_poi_proxy">UPVLC ProD POI Proxy Enabler</string>
 
   <!-- ODS Enabler sample -->
-  <string name="titleSampleOdsActivity">SampleODSActivity</string>
+  <string name="titleSampleOds">SampleODS</string>
+  <!-- DFKI Poi Client Enabler sample -->
+  <string name="titleSampleDfkiPoiClient">SampleDFKIPoiClient</string>
+    <!-- UPVLC Prodevelop Poi Proxy Enabler sample -->
+    <string name="titleSampleUPVProDPoiProxy">SamplePoiProxy</string>
   <string name="search">Search</string>
   <string name="noNetwork">Network access is required to launch a search</string>
   <string name="title">Title</string>

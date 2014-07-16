@@ -17,10 +17,14 @@ package mobi.designmyapp.template.sample;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import mobi.designmyapp.template.sample.dfki.DfkiActivity;
 import mobi.designmyapp.template.sample.ods.ui.SampleODSActivity;
+import mobi.designmyapp.template.sample.upvprod.ui.SamplePoiProxyActivity;
+import org.xwalk.core.XWalkView;
 
 
 public class MainActivity extends Activity {
@@ -30,11 +34,27 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    final Button button = (Button) findViewById(R.id.sample_ods_btn);
+    final Button odsButton = (Button) findViewById(R.id.sample_ods_btn);
     final Intent intent = new Intent(this, SampleODSActivity.class);
-    button.setOnClickListener(new View.OnClickListener() {
+    odsButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         startActivity(intent);
+      }
+    });
+
+    final Button dkfiButton = (Button) findViewById(R.id.sample_dfki_poi_client_btn);
+    final Intent intent2 = new Intent(this, DfkiActivity.class);
+    dkfiButton.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        startActivity(intent2);
+      }
+    });
+
+    final Button poiProxyButton = (Button) findViewById(R.id.sample_upb_prod_poi_proxy_btn);
+    final Intent intent3 = new Intent(this, SamplePoiProxyActivity.class);
+    poiProxyButton.setOnClickListener(new View.OnClickListener() {
+      public void onClick(View v) {
+        startActivity(intent3);
       }
     });
 

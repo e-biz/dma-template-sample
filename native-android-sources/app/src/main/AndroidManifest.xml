@@ -17,10 +17,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="mobi.designmyapp.template.sample">
 
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19" />
+    <uses-sdk android:minSdkVersion="11" android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
             android:allowBackup="true"
@@ -38,13 +40,15 @@
         </activity>
         <activity
                 android:name="mobi.designmyapp.template.sample.ods.ui.SampleODSActivity"
-                android:label="@string/titleSampleOdsActivity"
+                android:label="@string/titleSampleDfkiPoiClient"
                 android:parentActivityName="mobi.designmyapp.template.sample.MainActivity"
                 android:windowSoftInputMode="stateHidden" >
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="MainActivity"/>
         </activity>
+        <activity android:name=".dfki.DfkiActivity"/>
+        <activity android:name=".upvprod.ui.SamplePoiProxyActivity"/>
 
     </application>
 </manifest>

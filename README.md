@@ -4,9 +4,14 @@
 Requirements for Cordova
 --------------------
 
-*Node.js    
-*Ant    
-*`sudo npm install -g cordova`
+* Node.js    
+* Ant    
+* `sudo npm install -g cordova`
+
+###For iOS
+* XCode
+* `sudo npm install -g ios-deploy` 
+* `sudo npm install -g ios-sim` 
 
 **Don't forget to set your environment variables !**    
 
@@ -20,6 +25,14 @@ Requirements for Cordova
 ###Run 
 `cordova run android`
 
+###Add iOS platform to project :    
+`cordova platform add ios`
+
+###Compile iOS project:
+`cordova build ios`
+
+###Run (in iPhone Simulator)
+`cordova run ios`
 
 # License
 ======================================

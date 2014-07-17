@@ -20,9 +20,10 @@ native-android-sources/app/.gitignore
 
 # Generated files #
 ###################
-native-android-sources/bin/
-native-android-sources/gen/
-native-android-sources/build/
+native-android-sources/**/bin/
+native-android-sources/**/gen/
+native-android-sources/**/build/
+native-android-sources/**/out/
 
 # Intellij project files #
 ##########################
@@ -35,3 +36,7 @@ native-android-sources/build/
 **.gradle/
 
 **~
+# Temp files #
+##########################
+**/.DS_Store
+

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+/*
  Copyright 2014 eBusiness Information
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +12,32 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
--->
-<com.etsy.android.grid.StaggeredGridView
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/staggeredGridView"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-app:item_margin="2dp"
-app:column_count_portrait="2"
-app:column_count_landscape="4"
-android:background="#ccc"
-android:layout_gravity="center"/>
+ */
+package mobi.designmyapp.template.sample.upvprod.model;
+
+import java.util.List;
+
+/**
+ * Created by Loic Ortola on 16/07/2014.
+ */
+public class PoiProxyResult {
+  private String type;
+  private List<Feature> features;
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public List<Feature> getFeatures() {
+    return features;
+  }
+
+  public void setFeatures(List<Feature> features) {
+    this.features = features;
+  }
+
+}

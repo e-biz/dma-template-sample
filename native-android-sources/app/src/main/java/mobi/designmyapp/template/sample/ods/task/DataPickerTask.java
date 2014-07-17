@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Created by Loic Ortola on 23/06/2014.
  * DataPickerTask
  * AsyncTask for OpenDataSoft search
  */

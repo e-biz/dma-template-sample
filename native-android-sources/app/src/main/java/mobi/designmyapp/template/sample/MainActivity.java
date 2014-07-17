@@ -17,16 +17,16 @@ package mobi.designmyapp.template.sample;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import mobi.designmyapp.template.sample.dfki.DfkiActivity;
-import mobi.designmyapp.template.sample.ods.ui.SampleODSActivity;
+import mobi.designmyapp.template.sample.dfki.ui.PoiClientActivity;
+import mobi.designmyapp.template.sample.ods.ui.ODSActivity;
 import mobi.designmyapp.template.sample.upvprod.ui.SamplePoiProxyActivity;
-import org.xwalk.core.XWalkView;
 
-
+/**
+ * Created by Loic Ortola on 23/06/2014.
+ */
 public class MainActivity extends Activity {
 
   @Override
@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
     setContentView(R.layout.activity_main);
 
     final Button odsButton = (Button) findViewById(R.id.sample_ods_btn);
-    final Intent intent = new Intent(this, SampleODSActivity.class);
+    final Intent intent = new Intent(this, ODSActivity.class);
     odsButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         startActivity(intent);
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
     });
 
     final Button dkfiButton = (Button) findViewById(R.id.sample_dfki_poi_client_btn);
-    final Intent intent2 = new Intent(this, DfkiActivity.class);
+    final Intent intent2 = new Intent(this, PoiClientActivity.class);
     dkfiButton.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v) {
         startActivity(intent2);

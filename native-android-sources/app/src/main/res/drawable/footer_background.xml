@@ -14,14 +14,10 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<com.etsy.android.grid.StaggeredGridView
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/staggeredGridView"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-app:item_margin="2dp"
-app:column_count_portrait="2"
-app:column_count_landscape="4"
-android:background="#ccc"
-android:layout_gravity="center"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+    <corners android:bottomLeftRadius="3dp"
+            android:bottomRightRadius="3dp"></corners>
+    <solid android:color="#66bbbbbb"></solid>
+
+</shape>

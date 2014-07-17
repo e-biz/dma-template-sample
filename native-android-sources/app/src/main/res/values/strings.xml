@@ -34,6 +34,12 @@ limitations under the License.
   <string name="latitude">Lat</string>
   <string name="longitude">Lng</string>
   <string name="loading">Loading</string>
+  <string name="gmsRequired">You need to have google play services installed to run this demo</string>
+  <string name="errorRetrievingData">Cannot retrieve data. Please try again later</string>
+  <string name="waitingForLocation">Waiting for location...</string>
+  <string name="pleaseWait">Please wait...</string>
+  <string name="locationRetrievedOk">Location successfully acquired. Loading nearby contributions</string>
+  <string name="locationRetrievedKo">Location cannot be determined for now. Loading contributions around Paris, France</string>
 
 
 </resources>

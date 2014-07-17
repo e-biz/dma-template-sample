@@ -39,11 +39,12 @@ import java.net.URI;
 import java.util.List;
 
 /**
+ * Created by Loic Ortola on 23/06/2014.
  * This Sample demonstrates queries to the OpenDataSoft API
  * Complete API Documentation is available at
  * http://public.opendatasoft.com/api/doc/
  */
-public class SampleODSActivity extends Activity implements OnTaskCompletedListener<List<ODSResult>>, OnTaskStartedListener {
+public class ODSActivity extends Activity implements OnTaskCompletedListener<List<ODSResult>>, OnTaskStartedListener {
 
   // ---------------------------------------------------------------------------
   // Sample params
@@ -88,7 +89,7 @@ public class SampleODSActivity extends Activity implements OnTaskCompletedListen
     // Retrieve views
     resultListView = (ListView) findViewById(android.R.id.list);
     searchBox = (EditText) findViewById(R.id.searchBox);
-    odsResultAdapter = new ODSResultAdapter(SampleODSActivity.this);
+    odsResultAdapter = new ODSResultAdapter(ODSActivity.this);
     resultListView.setAdapter(odsResultAdapter);
 
 
@@ -232,6 +233,6 @@ public class SampleODSActivity extends Activity implements OnTaskCompletedListen
    */
   @Override
   public void onTaskStarted(Object... params) {
-    progressDialog = ProgressDialog.show(SampleODSActivity.this,getString(R.string.search),getString(R.string.loading)+"...",true,true);
+    progressDialog = ProgressDialog.show(ODSActivity.this,getString(R.string.search),getString(R.string.loading)+"...",true,true);
   }
 }

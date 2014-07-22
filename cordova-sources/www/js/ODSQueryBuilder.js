@@ -18,7 +18,7 @@
 var query = {
   url: "",
   baseurl: function (url) {
-    this.url = this.url.concat(url, "?");
+    this.url = url.concat("?");
     return this;
   },
   dataset: function (dataset) {

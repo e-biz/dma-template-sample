@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/ol3/ol.css">
+    <link rel="stylesheet" href="src/css/LayersControl.css">
+    <link rel="stylesheet" href="src/css/chosen.min.css">
+    <style>
+      .layers-control {
+        bottom: 21px;
+        top: auto;
+        right: 20px;
+        background-color: #333;
+        color: #fff;
+      }
+      .layers-control-btn {
+        display: inline-block;
+        bottom: 20px;
+        right: 0;
+        position: absolute;
+        border-radius: 0;
+        border: 0;
+        z-index: 10000;
+        background-color: #333;
+        color: #fff;
+      }
+      .layers-control-btn:hover,
+      .layers-control-btn:focus,
+      .layers-control-btn:active  {
+        outline: 0 !important;
+        background-color: #333;
+        color: #fff;
+        box-shadow: none;
+      }
+      .table tbody tr {
+        height: 1em;
+      }
+      .table tbody tr.highlight td {
+        background-color: yellow;
+      }
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+      body {
+        padding-top: 50px;
+      }
+      .navbar .navbar-brand {
+        font-weight: bold;
+        font-size: 25px;
+        color: white;
+      }
+      #features-container {
+        height: 100%;
+        overflow-y: scroll !important;
+      }
+      #features {
+        height: inherit;
+        overflow-y: scroll !important;
+      }
+      .nopadding {
+         padding: 0 !important;
+         margin: 0 !important;
+      }
+      .drawcursor {
+        cursor: crosshair !important;
+      }
+      #draw-btn.active {
+        color: #00FF00 !important;
+      }
+      @media screen and (max-width: 768px) {
+        .map-container {
+          height: 70%;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="src/css/app.css">
+    <script src="src/ol3/ol.js"></script>
+    <script src="src/jquery/jquery.min.js"></script>
+    <script src="src/bootstrap/js/bootstrap.min.js"></script>
+    <script src="src/bootbox/bootbox.min.js"></script>
+    <title>POIProxy</title>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">POIProxy</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <select class="poiproxy-services" data-placeholder="Chose a service...">
+              <option/>
+            </select>
+          </li>
+          <li>
+            <input type="text" class="poiproxy-search form-control" placeholder="Search..." />
+          </li>
+          <li><a href="#" id="fly-to-berlin" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Go to Berlin</a></li>
+          <li><a href="#" id="elastic-to-barcelona" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Go to Barcelona</a></li>
+          <li>
+            <button id="new-service-btn" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#new-service">
+              Register new service
+            </button>
+          </li>
+          <!-- <li><a href="#" id="draw-btn" class="" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="drawFeature(); return false;"><i class="fa fa-edit"></i>&nbsp;&nbsp;Draw Feature</a></li>
+          <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" onclick="deleteFeature(); return false;"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;Delete Feature</a></li> -->
+        </ul>
+      </div><!--/.navbar-collapse -->
+    </div>
+    <div class="container-fluid map-container">
+      <div class="row">
+        <div class="col-sm-8 col-md-8 nopadding">
+          <div id="map"></div>
+        </div>
+        <div class="col-sm-4 col-md-4 ">
+          <div id="features-container">
+            <table id="features" class="table table-hover table-responsive">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade modal-refresh">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Refresh the application</h4>
+          </div>
+          <div class="modal-body">
+            <p>Refresh the browser tab in order to view the new service registered in POIProxy</p>
+          </div>
+          <div class="modal-footer">
+            
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="new-service" class="modal fade" role="dialog" aria-labelledby="new-service" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="new-service">Register a new service in POIProxy</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <fieldset>              
+              <!-- Text input-->
+              <div class="control-group">
+                <label class="control-label" for="id">ID</label>
+                <div class="controls">
+                  <input id="id" name="id" data-bind="value: id" type="text" placeholder="ID" class="input-xlarge" required="">
+                  <p class="help-block">An ID for the POIProxy service</p>
+                </div>
+              </div>
+
+              <!-- Select Basic -->
+              <div class="control-group">
+                <label class="control-label" for="selectbasic">Source format</label>
+                <div class="controls">
+                  <select id="selectbasic" name="selectbasic" class="input-xlarge">
+                    <option>json</option>
+                    <option>xml</option>
+                    <option>csv</option>
+                    <option>kml</option>
+                    <option>rdf</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="control-group">
+                <label class="control-label" for="apikey">API key</label>
+                <div class="controls">
+                  <input id="apikey" name="apikey" data-bind="value: apiKey" type="text" placeholder="Source API key (optional)" class="input-xlarge">
+                  <p class="help-block">Type your API key, leave it empty if not applies for your service</p>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="control-group">
+                <label class="control-label" for="encoding">Source Encoding</label>
+                <div class="controls">
+                  <input id="encoding" data-bind="value: encoding" name="encoding" type="text" placeholder="Default UTF-8 (optional)" class="input-xlarge">
+                  <p class="help-block">The encoding of the source output</p>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="control-group">
+                <label class="control-label" for="srs">Source SRS</label>
+                <div class="controls">
+                  <input id="srs" name="srs" data-bind="value: SRS" type="text" placeholder="Default EPSG:4326 (optional)" class="input-xlarge">
+                  <p class="help-block">Type the EPSG code of the source output in case that it is different from EPSG:4326</p>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="control-group" data-bind="with: requestTypes">
+                <label class="control-label" for="browseurl">Browse URL</label>
+                <div class="controls" data-bind="with: browse">
+                  <input id="browseurl" name="browseurl" data-bind="value: url" type="text" placeholder="URL" class="input-xlarge" required="">
+                  <p class="help-block">The URL to retrieve geo-located data</p>
+                </div>
+              </div>
+
+              <!-- Text input-->
+              <div class="control-group" data-bind="with: requestTypes">
+                <label class="control-label" for="searchurl">Search URL</label>
+                <div class="controls" data-bind="with: search">
+                  <input id="searchurl" name="searchurl" data-bind="value: url" type="text" placeholder="URL" class="input-xlarge" required="">
+                  <p class="help-block">The URL to search for geo-located data</p>
+                </div>
+              </div>
+
+              <div data-bind="with: featureTypes">
+                <div data-bind="with: browse">
+                  <!-- Text input-->
+                  <div class="control-group" >
+                    <label class="control-label" for="featureelement">Feature Element</label>
+                    <div class="controls">
+                      <input id="featureelement" data-bind="value: feature" name="featureelement" type="text" placeholder="" class="input-xlarge" required="">
+                      <p class="help-block">The element of the source output that represents a new feature</p>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="lonelement">Longitude element</label>
+                    <div class="controls">
+                      <input id="lonelement" data-bind="value: lon" name="lonelement" type="text" placeholder="" class="input-xlarge" required="">
+                      <p class="help-block">The element of the source output that represents the longitude of the POI</p>
+                    </div>
+                  </div>
+
+                  <!-- Text input-->
+                  <div class="control-group">
+                    <label class="control-label" for="latelement">Latitude element</label>
+                    <div class="controls">
+                      <input id="latelement" name="latelement" data-bind="value: lat" type="text" placeholder="" class="input-xlarge" required="">
+                      <p class="help-block">The element of the source output that represents the latitude of the POI</p>
+                    </div>
+                  </div>
+
+                  <div data-bind:"with: elements">
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: name">
+                      <label class="control-label" for="nameelement">Name Element</label>
+                      <div class="controls">
+                        <input id="nameelement" name="nameelement" data-bind="value: input" type="text" placeholder="" class="input-xlarge" required="">
+                        <p class="help-block">The element of the source output that represents the name of the POI</p>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: description">
+                      <label class="control-label" for="descriptionelement">Description element</label>
+                      <div class="controls">
+                        <input id="descriptionelement" name="descriptionelement" data-bind="value: input" type="text" placeholder="(optional)" class="input-xlarge">
+                        <p class="help-block">The element of the source output that represents the description of the POI</p>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: web">
+                      <label class="control-label" for="webelement">Web element</label>
+                      <div class="controls">
+                        <input id="webelement" name="webelement" data-bind="value: input" type="text" placeholder="(optional)" class="input-xlarge">
+                        <p class="help-block">The element of the source output that represents the website of the POI</p>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: image">
+                      <label class="control-label" for="imageelement">Image element</label>
+                      <div class="controls">
+                        <input id="imageelement" name="imageelement" data-bind="value: input" type="text" placeholder="(optional)" class="input-xlarge">
+                        <p class="help-block">The element of the source output that represents the image of the POI</p>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: address">
+                      <label class="control-label" for="addresselement">Address element</label>
+                      <div class="controls">
+                        <input id="addresselement" name="addresselement" data-bind="value: input" type="text" placeholder="(optional)" class="input-xlarge">
+                        <p class="help-block">The element of the source output that represents the address of the POI</p>
+                      </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="control-group" data-bind="with: phone">
+                      <label class="control-label" for="phoneelement">Phone element</label>
+                      <div class="controls">
+                        <input id="phoneelement" name="phoneelement" data-bind="value: input" type="text" placeholder="(optional)" class="input-xlarge">
+                        <p class="help-block">The element of the source output that represents the phone of the POI</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              </fieldset>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" id="register-service" class="btn btn-primary">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="lib/config.js"></script>
+    <script src="lib/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "i1401-ficontent2",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0",
+    "requirejs": "~2.1.14",
+    "isotope": "latest",
+    "Buttons": "latest",
+    "geolib": "https://github.com/manuelbieh/geolib.git"
+  },
+  "devDependencies": {}
+}

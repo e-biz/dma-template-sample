@@ -16,10 +16,11 @@ limitations under the License.
 -->
 <resources>
 
-  <string name="app_name">SampleAndroid</string>
-  <string name="sample_ods">ODS Enabler</string>
-  <string name="sample_dfki_poi_client">DFKI POI Client Enabler</string>
-  <string name="sample_upv_prod_poi_proxy">UPVLC ProD POI Proxy Enabler</string>
+  <string name="app_name">FI-C2 Catalog</string>
+  <string name="sample_ods">ODS - OpenDataSoft</string>
+  <string name="sample_dfki_poi_client">DFKI - POI Client</string>
+  <string name="sample_upv_prod_poi_proxy">UPV/PROD - POIProxy TileView</string>
+  <string name="sample_pixelpark_ppnet">PP - Social Network</string>
 
   <!-- ODS Enabler sample -->
   <string name="titleSampleOds">SampleODS</string>
@@ -38,8 +39,28 @@ limitations under the License.
   <string name="errorRetrievingData">Cannot retrieve data. Please try again later</string>
   <string name="waitingForLocation">Waiting for location...</string>
   <string name="pleaseWait">Please wait...</string>
-  <string name="locationRetrievedOk">Location successfully acquired. Loading nearby contributions</string>
+  <string name="locationRetrievedOk">Loading nearby contributions</string>
   <string name="locationRetrievedKo">Location cannot be determined for now. Loading contributions around Paris, France</string>
+  <string name="about">About</string>
+  <string name="about_details">
+    FI-C2 Catalog is an app developed by many partners among the Consortium. Contributors: \n
+    - eBusiness Information \n
+    - Fraunhofer Fokus \n
+    - PixelPark \n
+    - OpenDataSoft \n
+    - DFKI \n
+    - UPVLC \n
+    - Prodevelop \n
+    Source code is available on: \n
+    https://github.com/e-biz/dma-template-sample \n
+    Source code is placed under Apache 2.0 LICENSE \n\n
+    Application uses the following external libraries: \n
+    - SquareUp OkHTTP \n
+    - SquareUp Picasso \n
+    - Intel OS Crosswalk \n
+    - Apache Cordova \n
+    - Etsy StaggeredGridView \n
+  </string>
 
 
 </resources>

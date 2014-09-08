@@ -1,0 +1,6 @@
+[submodule "native-android-sources/app/src/main/assets/poi-client"]
+	path = native-android-sources/app/src/main/assets/poi-client
+	url = https://github.com/stlemme/poi-client.git
+[submodule "native-android-sources/app/src/main/assets/sne"]
+	path = native-android-sources/app/src/main/assets/sne
+	url = https://github.com/pixelpark/ppnet

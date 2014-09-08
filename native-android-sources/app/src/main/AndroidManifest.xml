@@ -16,44 +16,46 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="mobi.designmyapp.template.sample">
+  <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
 
-    <uses-sdk android:minSdkVersion="12" android:targetSdkVersion="19" />
+  <uses-sdk android:minSdkVersion="12" android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.BLUETOOTH" />
 
-    <application
-            android:allowBackup="true"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-        <meta-data
-                android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version" />
-        <activity
-                android:name="mobi.designmyapp.template.sample.MainActivity"
-                android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+  <application
+      android:allowBackup="true"
+      android:icon="@drawable/ic_launcher"
+      android:label="@string/app_name"
+      android:theme="@android:style/Theme.Holo.Light">
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+    <activity
+        android:name="mobi.designmyapp.template.sample.MainActivity"
+        android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
-        <activity
-                android:name=".ods.ui.ODSActivity"
-                android:label="@string/titleSampleDfkiPoiClient"
-                android:parentActivityName="mobi.designmyapp.template.sample.MainActivity"
-                android:windowSoftInputMode="stateHidden">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="MainActivity"/>
-        </activity>
-        <activity android:name=".dfki.ui.PoiClientActivity"
-                  android:screenOrientation="locked"/>
-        <activity android:name=".upvprod.ui.SamplePoiProxyActivity"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".ods.ui.ODSActivity"
+        android:label="@string/titleSampleDfkiPoiClient"
+        android:parentActivityName="mobi.designmyapp.template.sample.MainActivity"
+        android:windowSoftInputMode="stateHidden">
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value="MainActivity"/>
+    </activity>
+    <activity android:name=".dfki.ui.PoiClientActivity"
+              android:screenOrientation="locked"/>
+    <activity android:name=".upvprod.ui.PoiProxyActivity"/>
+    <activity android:name=".pixelpark.SocialNetworkActivity"/>
 
-    </application>
+  </application>
 </manifest>

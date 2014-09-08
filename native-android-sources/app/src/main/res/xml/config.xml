@@ -1,4 +1,5 @@
-/*
+<?xml version='1.0' encoding='utf-8'?>
+<!--
  Copyright 2014 eBusiness Information
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,19 +13,16 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
- */
-package mobi.designmyapp.template.sample.upvprod.listener;
-
-/**
- * Created by Loic Ortola on 17/07/2014
- * OnTaskCompletedListener
- * T result type provided as a parameter in onTaskCompleted
- */
-public interface OnTaskCompletedListener<T> {
-  /**
-   * Method called when the task execution is over
-   * @param result
-   */
-  public void onTaskCompleted(T result);
-  public void onTaskUpdated(String value);
-}
+-->
+<widget id="mobi.designmyapp.template.sample.cordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>FI-C2 Catalog</name>
+  <description>
+    A sample Apache Cordova application that demonstrates FI-Content 2 Technologies
+  </description>
+  <author email="ebiz@ebusinessinformation.fr" href="http://ebusinessinformation.fr/">
+    eBusiness Information
+  </author>
+  <content src="index.html"/>
+  <access origin="*"/>
+</widget>

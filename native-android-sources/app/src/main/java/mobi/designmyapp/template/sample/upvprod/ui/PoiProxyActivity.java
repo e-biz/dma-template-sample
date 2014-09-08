@@ -41,14 +41,14 @@ import mobi.designmyapp.template.sample.upvprod.util.PoiProxyQueryBuilder;
  * source code available on github at
  * https://github.com/alrocar/POIProxy
  */
-public class SamplePoiProxyActivity extends Activity implements
+public class PoiProxyActivity extends Activity implements
     GooglePlayServicesClient.ConnectionCallbacks,
     GooglePlayServicesClient.OnConnectionFailedListener, OnTaskCompletedListener<PoiProxyResult> {
 
   // ---------------------------------------------------------------------------
   // Sample params
   // ---------------------------------------------------------------------------
-  private static final String TAG = SamplePoiProxyActivity.class.getSimpleName();
+  private static final String TAG = PoiProxyActivity.class.getSimpleName();
   // Milliseconds per second
   private static final int MILLISECONDS_PER_SECOND = 1000;
   // Update frequency in seconds
@@ -109,7 +109,7 @@ public class SamplePoiProxyActivity extends Activity implements
 
     locationClient = new LocationClient(this, this, this);
 
-    progressDialog = ProgressDialog.show(SamplePoiProxyActivity.this, getString(R.string.pleaseWait), getString(R.string.waitingForLocation), true);
+    progressDialog = ProgressDialog.show(PoiProxyActivity.this, getString(R.string.pleaseWait), getString(R.string.waitingForLocation), true);
 
   }
 
@@ -146,7 +146,7 @@ public class SamplePoiProxyActivity extends Activity implements
    * @param results
    */
   private void updateView(PoiProxyResult results) {
-    tileAdapter = new PoiProxyTileAdapter(SamplePoiProxyActivity.this);
+    tileAdapter = new PoiProxyTileAdapter(PoiProxyActivity.this);
     tileAdapter.updateAdapter(results.getFeatures());
     gridView.setAdapter(tileAdapter);
   }
@@ -168,14 +168,15 @@ public class SamplePoiProxyActivity extends Activity implements
     if(currentLocation != null) {
       progressDialog.setMessage(getString(R.string.locationRetrievedOk));
       task.execute(
-          PoiProxyQueryBuilder.retrieve().service("flickr").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(5000).build(),
-          PoiProxyQueryBuilder.retrieve().service("panoramio").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(5000).build(),
-          PoiProxyQueryBuilder.retrieve().service("instagram").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(5000).build()
+          PoiProxyQueryBuilder.retrieve().service("flickr").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(500).build(),
+          PoiProxyQueryBuilder.retrieve().service("panoramio").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(500).build(),
+          PoiProxyQueryBuilder.retrieve().service("instagram").lon(currentLocation.getLongitude()).lat(currentLocation.getLatitude()).distance(500).build()
       );
     }
     else {
       progressDialog.setMessage(getString(R.string.locationRetrievedKo));
       task.execute(
+          PoiProxyQueryBuilder.retrieve().service("flickr").lon(2.334314).lat(48.861541).distance(5000).build(),
           PoiProxyQueryBuilder.retrieve().service("panoramio").lon(2.334314).lat(48.861541).distance(5000).build(),
           PoiProxyQueryBuilder.retrieve().service("instagram").lon(2.334314).lat(48.861541).distance(5000).build()
       );
@@ -216,5 +217,14 @@ public class SamplePoiProxyActivity extends Activity implements
     // Else update views and dismiss dialog
     updateView(result);
 
+  }
+
+  /**
+   * Will be called on AsyncTask update
+   * @param result
+   */
+  @Override
+  public void onTaskUpdated(String result) {
+    progressDialog.setMessage(result);
   }
 }

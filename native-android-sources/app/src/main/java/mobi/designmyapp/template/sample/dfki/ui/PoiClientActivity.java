@@ -38,6 +38,6 @@ public class PoiClientActivity extends Activity {
     setContentView(R.layout.activity_sample_poi_client);
     webView = (XWalkView) findViewById(R.id.xWalkView);
     webView.setAlwaysDrawnWithCacheEnabled(true);
-    webView.load("http://130.206.80.175/poi-client/xml3d ", null);
+    webView.load("file:///android_asset/poi-client/index.html", null);
   }
 }

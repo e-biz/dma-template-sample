@@ -38,7 +38,7 @@ import java.util.Collections;
  * PoiProxyRequestTask
  * AsyncTask for PoiProxy request retrieval
  */
-public class PoiProxyRequestTask extends AsyncTask<URI,Void,PoiProxyResult> {
+public class PoiProxyRequestTask extends AsyncTask<URI,String,PoiProxyResult> {
 
   private static final String TAG = PoiProxyRequestTask.class.getSimpleName();
 
@@ -68,9 +68,10 @@ public class PoiProxyRequestTask extends AsyncTask<URI,Void,PoiProxyResult> {
     PoiProxyResult result = null;
 
     HttpClient client = new DefaultHttpClient();
-
     //For each URI provided, we call and get the result
-    for(URI callURI : url) {
+    for(int i = 0; i < url.length; i++) {
+      URI callURI = url[i];
+      publishProgress("Progress:"+i+"/"+url.length);
       // Process http request
       try {
         HttpGet request = new HttpGet(callURI);
@@ -111,8 +112,13 @@ public class PoiProxyRequestTask extends AsyncTask<URI,Void,PoiProxyResult> {
   }
 
   @Override
+  protected void onProgressUpdate(String... values) {
+    if(onTaskCompletedListener != null)
+      onTaskCompletedListener.onTaskUpdated(values[0]);
+  }
+
+  @Override
   protected void onPostExecute(PoiProxyResult result) {
-    super.onPostExecute(result);
     if(onTaskCompletedListener != null)
       onTaskCompletedListener.onTaskCompleted(result);
   }

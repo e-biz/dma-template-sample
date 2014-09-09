@@ -26,6 +26,20 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.BLUETOOTH" />
 
+    <!-- For monitoring purposes -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- to store files -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <!--  to set wifi sleep policy -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!--  to allow the use of Position (GPS or mobile networks) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
   <application
       android:allowBackup="true"
       android:icon="@drawable/ic_launcher"
@@ -56,6 +70,9 @@
               android:screenOrientation="locked"/>
     <activity android:name=".upvprod.ui.PoiProxyActivity"/>
     <activity android:name=".pixelpark.SocialNetworkActivity"/>
+
+      <activity android:name=".contentsharing.ui.SampleContentSharingAuthActivity"
+          android:screenOrientation="portrait"/>
 
   </application>
 </manifest>

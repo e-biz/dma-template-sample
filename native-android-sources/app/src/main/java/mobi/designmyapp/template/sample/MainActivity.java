@@ -71,6 +71,12 @@ public class MainActivity extends Activity {
       }
     });
 
+    final Button contentSharingButton = (Button) findViewById(R.id.sample_contentsharing_btn);
+    final Intent intent5 = new Intent(this, SampleContentSharingAuthActivity.class);
+    contentSharingButton.setOnClickListener(new View.OnClickListener() {
+          public void onClick(View v) { startActivity(intent5); }
+      });
+
   }
 
   @Override

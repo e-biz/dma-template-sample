@@ -22,9 +22,9 @@
   <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
   <meta name="viewport"
         content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,width=device-width,height=device-height, target-densitydpi=device-dpi"/>
-  <link rel="stylesheet" type="text/css" href="css/index.css"/>
   <link rel="stylesheet" type="text/css" href="css/list.css"/>
   <link rel="stylesheet" href="css/jquery.mobile-1.4.2.min.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css"/>
 
   <script src="js/jquery/jquery-1.10.2.min.js"></script>
   <script src="js/jquery/jquery.mobile-1.4.2.min.js"></script>
@@ -44,10 +44,10 @@
       <img src="img/fi_content_logo.png" style="text-align:center;"/>
     </div>
     <div id="buttons uppercase">
-      <a href="#ODS" data-role="button" id="ODSSample">OpenData Search</a>
-      <a href="sne/index.html" data-role="button" data-ajax="false">SocialNetwork</a>
-      <a href="poiproxy-ol3/index.html" data-role="button"  data-ajax="false">POIProxy Map</a>
-      <a href="poiproxy-metro/app/index.html" data-role="button"  data-ajax="false">POIProxy TileViewer</a>
+      <a href="#ODS" data-role="button" id="ODSSample" class="${odssample?string("", "hide")}">OpenData Search</a>
+      <a href="sne/index.html" data-role="button" data-ajax="false" class="${socialnetwork?string("", "hide")}">SocialNetwork</a>
+      <a href="poiproxy-ol3/index.html" data-role="button"  data-ajax="false" class="${poiproxy?string("", "hide")}">POIProxy Map</a>
+      <a href="poiproxy-metro/app/index.html" data-role="button"  data-ajax="false" class="${poiclient?string("", "hide")}">POIProxy TileViewer</a>
     </div>
   </div>
 </div>

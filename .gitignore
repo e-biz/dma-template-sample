@@ -40,3 +40,5 @@ native-android-sources/**/out/
 ##########################
 **/.DS_Store
 
+
+local.properties

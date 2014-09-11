@@ -1,4 +1,4 @@
-package mobi.designmyapp.template.sample.contentsharing.ui;
+package mobi.designmyapp.template.sample.contentsharing;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,12 +12,19 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
-import com.thales.feedsync.module.security.AuthGeneralRadius;
+import com.thales.feedsync.security.AuthGeneralRadius;
 
 import mobi.designmyapp.template.sample.R;
 
 /**
- * Created by flo on 16/07/14.
+ * <p>
+ * This class is an activity for the authentication of a user </br>
+ * It uses the main function AuthGeneralRadius(String user, String password) which returns the result of the authentication </br>
+ * In this result, we can get some details like the different access of the user, the priorities and the groups which it belongs to.
+ * </p>
+ *
+ * @author Florian COSNIER
+ *
  */
 public class SampleContentSharingAuthActivity extends Activity{
     static final String TAG = "AuthFragment";

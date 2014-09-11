@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_gravity="center">
+
+    <TextView
+        android:text="Add Comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16dip"
+        android:gravity="center" />
+  
+  <TextView 
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Username:"
+  android:paddingLeft="5dip"
+  
+  />
+  
+  <EditText
+  android:id="@+id/comment_user"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:maxLines="1"
+  android:layout_margin="5dip"
+  android:text="Thales"
+  />
+  
+   <TextView 
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Comment:"
+  android:paddingLeft="5dip"
+  />
+  
+  <EditText
+  android:id="@+id/comment_body"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:maxLines="10"
+  android:minLines="3"
+  android:layout_margin="5dip"
+  android:text="on Site"
+  />
+  
+  
+  <LinearLayout
+  android:orientation="horizontal"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:weightSum="3">
+  
+  <Button 
+  android:id="@+id/add_comment_activity"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_alignParentLeft="true"
+  android:text="Submit"
+  android:padding="5dip"
+  android:layout_gravity="center"
+  android:gravity="center"
+  android:layout_weight="1"/>
+  
+  
+    <Button 
+  android:id="@+id/select_pics"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_centerInParent="true"
+  android:text="Add picture"
+  android:padding="5dip"
+  android:layout_gravity="center"
+  android:gravity="center"
+  android:layout_weight="1"/>
+  
+  
+   <Button 
+  android:id="@+id/camera"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  android:layout_alignParentRight="true"
+  android:text="Take a picture"
+  android:padding="5dip"
+  android:layout_gravity="center"
+  android:gravity="center"
+  android:layout_weight="1"/>
+    
+</LinearLayout>
+
+<ImageView  android:id="@+id/added_img"
+  android:layout_width="200dip"
+  android:layout_height="200dip"
+  android:padding="10dip"
+  android:visibility="invisible"
+  android:layout_gravity="center|bottom"
+  android:gravity="center"
+ />
+  
+</LinearLayout>

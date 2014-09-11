@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageViewAppLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textViewUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/editTextUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:text="Officer 206">
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"  />
+
+    <CheckBox
+        android:id="@+id/checkBoxPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Show Password" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/editTextAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="192.168.20.239"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/buttonAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Authenticate" />
+
+</LinearLayout>

@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:text="Officer 206">
+        android:text="Officer213">
         <requestFocus />
     </EditText>
 
@@ -60,7 +60,7 @@
         android:id="@+id/editTextAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="192.168.20.239"
+        android:text="132.227.62.120"
         android:ems="10" />
 
     <Button
